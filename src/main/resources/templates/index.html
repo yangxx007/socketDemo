@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>My Socket Device</title>
+</head>
+
+<body>
+Welcome to socket test page<br/>
+<button onclick="start()">open</button> <button onclick="start()">read</button>  <button onclick="stop()">Stop</button>
+<div id="message">
+</div>
+</body>
+<script src="/static/js/stomp.min.js"></script>
+<script src="/static/js/sockjs.min.js"></script>
+<script type="text/javascript">
+
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    function setMessageInnerHTML(innerHTML){
+        document.getElementById('message').innerHTML += innerHTML + '<br/>';
+    }
+
+
+    function start(){
+
+        xmlhttp.open("GET","/start",true);
+        xmlhttp.send();
+        document.getElementById('message').innerHTML += xmlhttp.responseText + '<br/>';
+    }
+
+    //????
+    function stop(){
+
+        xmlhttp.open("GET","/stop",true);
+        xmlhttp.send();
+        document.getElementById('message').innerHTML += xmlhttp.responseText + '<br/>';
+        // var message = document.getElementById('text').value;
+        // websocket.send(message);
+    }
+</script>
+</html>
